@@ -1,8 +1,8 @@
+import SessionProvider from '@/components/SessionProvider';
 import type { Metadata } from 'next';
+import { getServerSession } from 'next-auth';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import SessionProvider from '@/app/components/SessionProvider';
-import { getServerSession } from 'next-auth';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,7 +19,13 @@ export default async function RootLayout({
   const session = await getServerSession();
   return (
     <html lang="en">
-      <SessionProvider session={session}>{children}</SessionProvider>
+      <body>
+        <SessionProvider session={session}>
+          <main className="mx-auto max-w-5xl text-2xl flex gap-2">
+            {children}
+          </main>
+        </SessionProvider>
+      </body>
     </html>
   );
 }

@@ -9,6 +9,9 @@ export const authOptions = {
     }),
     /* ...add more providers here */
   ],
+  pages: {
+    signIn: '/signin', // Define the custom sign-in page path
+  },
 };
 
 export const handler = NextAuth(authOptions);
